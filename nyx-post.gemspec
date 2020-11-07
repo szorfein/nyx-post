@@ -1,4 +1,4 @@
-require_relative 'lib/nyx-post/version'
+require_relative 'lib/nyx_post/version'
 
 Gem::Specification.new do |spec|
   spec.name          = "nyx-post"

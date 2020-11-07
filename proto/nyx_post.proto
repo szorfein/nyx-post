@@ -1,0 +1,26 @@
+syntax = "proto3";
+
+package nyx;
+
+service Post {
+  rpc Get(GetRequest) returns (GetReply) {}
+  rpc Create(CreateRequest) returns (CreateReply) {}
+  rpc Delete(DeleteRequest) returns (DeleteReply) {}
+  rpc Update(UpdateRequest) returns (UpdateReply) {}
+}
+
+message GetRequest {
+  string title = 1;
+  string description = 2;
+}
+
+message GetReply {
+  string message = 1;
+}
+
+message CreateRequest {}
+message CreateReply {}
+message DeleteRequest {}
+message DeleteReply {}
+message UpdateRequest {}
+message UpdateReply {}
