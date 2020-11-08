@@ -1,5 +1,6 @@
 require 'grpc'
 require 'proto/nyx_post_services_pb'
+require 'json'
 
 module NyxPost
   module Client
@@ -9,10 +10,9 @@ module NyxPost
       end
 
       def by_id(id)
-        puts "Request post id: #{id}"
         begin
           post = @stub.get_post(Nyx::GetPostRequest.new(id: "1")).post
-          puts post
+          puts post.to_json
         rescue GRPC::BadStatus => e
           abort "ERROR: #{e.message}"
         end
@@ -20,8 +20,8 @@ module NyxPost
 
       def all(skip, take)
         begin
-          message = @stub.get_posts(Nyx::GetPostsRequest.new(skip: skip, take: take)).message
-          puts "Msg: #{message}"
+          posts = @stub.get_posts(Nyx::GetPostsRequest.new(skip: skip, take: take)).posts
+          puts posts.to_json
         rescue GRPC::BadStatus => e
           abort "ERROR: #{e.message}"
         end

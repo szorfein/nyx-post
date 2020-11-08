@@ -3,8 +3,10 @@
 require 'nyx_post'
 
 # Get
+puts "By id"
 NyxPost::Client::GetPost.new.by_id("1")
-#NyxPost::Client::GetPost.new.all(0, 0)
+puts "Get all"
+NyxPost::Client::GetPost.new.all(0, 0)
 
 # Create
 NyxPost::Client::CreatePost.new("GPG Keys", "Howto create a GPG Key with Tails Linux").start
