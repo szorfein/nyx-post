@@ -1,5 +1,5 @@
 #!/usr/bin/env ruby
 
-require 'client'
+require 'nyx_post'
 
-Client.start
+NyxPost::Client.new("GPG Keys", "Howto create a GPG Key with Tails Linux").start
