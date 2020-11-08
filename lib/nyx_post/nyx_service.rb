@@ -4,8 +4,8 @@ module NyxPost
   class NyxService < Nyx::Post::Service
     # The method should match with Nyx::Post::Service (rpc :Get, ...)
     def get(post_req, _unused_call)
-      #puts "Received title #{post_req.title} and desc #{post_req.description}"
-      Nyx::GetReply.new(message: "#{post_req.title} #{post_req.description}")
+      msg = "Received title #{post_req.title} and desc #{post_req.description}"
+      Nyx::GetReply.new(message: msg)
     end
   end
 end
