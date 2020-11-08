@@ -5,16 +5,30 @@ require 'google/protobuf'
 
 Google::Protobuf::DescriptorPool.generated_pool.build do
   add_file("nyx_post.proto", :syntax => :proto3) do
-    add_message "nyx.GetRequest" do
+    add_message "nyx.Post" do
+      optional :id, :string, 1
+      optional :title, :string, 2
+      optional :description, :string, 3
+    end
+    add_message "nyx.GetPostRequest" do
+      optional :id, :string, 1
+    end
+    add_message "nyx.GetPostReply" do
+      optional :post, :message, 1, "nyx.Post"
+    end
+    add_message "nyx.GetPostsRequest" do
+      optional :skip, :uint64, 1
+      optional :take, :uint64, 2
+    end
+    add_message "nyx.GetPostsReply" do
+      repeated :posts, :message, 1, "nyx.Post"
+    end
+    add_message "nyx.CreateRequest" do
       optional :title, :string, 1
       optional :description, :string, 2
     end
-    add_message "nyx.GetReply" do
-      optional :message, :string, 1
-    end
-    add_message "nyx.CreateRequest" do
-    end
     add_message "nyx.CreateReply" do
+      optional :message, :string, 1
     end
     add_message "nyx.DeleteRequest" do
     end
@@ -28,8 +42,11 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
 end
 
 module Nyx
-  GetRequest = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("nyx.GetRequest").msgclass
-  GetReply = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("nyx.GetReply").msgclass
+  Post = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("nyx.Post").msgclass
+  GetPostRequest = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("nyx.GetPostRequest").msgclass
+  GetPostReply = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("nyx.GetPostReply").msgclass
+  GetPostsRequest = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("nyx.GetPostsRequest").msgclass
+  GetPostsReply = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("nyx.GetPostsReply").msgclass
   CreateRequest = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("nyx.CreateRequest").msgclass
   CreateReply = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("nyx.CreateReply").msgclass
   DeleteRequest = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("nyx.DeleteRequest").msgclass

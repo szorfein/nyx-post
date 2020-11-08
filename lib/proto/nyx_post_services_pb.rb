@@ -5,16 +5,17 @@ require 'grpc'
 require_relative 'nyx_post_pb'
 
 module Nyx
-  module Post
+  module PostService
     class Service
 
       include GRPC::GenericService
 
       self.marshal_class_method = :encode
       self.unmarshal_class_method = :decode
-      self.service_name = 'nyx.Post'
+      self.service_name = 'nyx.PostService'
 
-      rpc :Get, ::Nyx::GetRequest, ::Nyx::GetReply
+      rpc :GetPost, ::Nyx::GetPostRequest, ::Nyx::GetPostReply
+      rpc :GetPosts, ::Nyx::GetPostsRequest, ::Nyx::GetPostsReply
       rpc :Create, ::Nyx::CreateRequest, ::Nyx::CreateReply
       rpc :Delete, ::Nyx::DeleteRequest, ::Nyx::DeleteReply
       rpc :Update, ::Nyx::UpdateRequest, ::Nyx::UpdateReply
