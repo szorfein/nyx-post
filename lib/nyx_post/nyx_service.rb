@@ -40,7 +40,7 @@ module NyxPost
     end
 
     def create(post_req, _unused_call)
-      msg = "Received title #{post_req.title} and desc #{post_req.description}"
+      msg = "Create title #{post_req.title} and desc #{post_req.description}"
       Nyx::CreateReply.new(message: msg)
     end
   end

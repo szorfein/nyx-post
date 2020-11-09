@@ -12,8 +12,7 @@ module NyxPost
       def start
         stub = Nyx::PostService::Stub.new('0.0.0.0:50052', :this_channel_is_insecure)
         begin
-          message = stub.create(Nyx::CreateRequest.new(title: @title, description: @desc)).message
-          puts "Msg: #{message}"
+          stub.create(Nyx::CreateRequest.new(title: @title, description: @desc)).message
         rescue GRPC::BadStatus => e
           abort "ERROR: #{e.message}"
         end
