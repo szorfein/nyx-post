@@ -15,3 +15,8 @@ posts.each { |p| puts "#{p.id} | #{p.title} | #{p.description}" }
 puts "==> Create one"
 reply = NyxPost::Client::CreatePost.new("GPG Keys", "Howto create a GPG Key with Tails Linux").start
 puts reply
+
+# Delete
+puts "==> Delete one"
+res = NyxPost::Client::DeletePost.new("1").start
+puts res

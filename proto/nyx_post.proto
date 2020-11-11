@@ -42,7 +42,13 @@ message CreateReply {
   string message = 1;
 }
 
-message DeleteRequest {}
-message DeleteReply {}
+message DeleteRequest {
+  string id = 1;
+}
+
+message DeleteReply {
+  string msg_err = 1;
+}
+
 message UpdateRequest {}
 message UpdateReply {}

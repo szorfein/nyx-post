@@ -23,5 +23,10 @@ module NyxPost
       msg = "Create title #{post_req.title} and desc #{post_req.description}"
       Nyx::CreateReply.new(message: msg)
     end
+
+    def delete(post_req, _unused_call)
+      msg = "Post #{post_req.id} deleted"
+      Nyx::DeleteReply.new(msg_err: msg)
+    end
   end
 end
