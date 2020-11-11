@@ -10,7 +10,7 @@ module NyxPost
 
       def by_id(id)
         begin
-          @stub.get_post(Nyx::GetPostRequest.new(id: "1")).post
+          @stub.get_post(Nyx::GetPostRequest.new(id: id)).post
         rescue GRPC::BadStatus => e
           abort "ERROR: #{e.message}"
         end
