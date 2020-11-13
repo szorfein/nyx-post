@@ -4,3 +4,5 @@ source "https://rubygems.org"
 gemspec
 
 gem "rake", "~> 12.0"
+gem "pg", "~> 1.2"
+gem "activerecord", "~> 6.0"
