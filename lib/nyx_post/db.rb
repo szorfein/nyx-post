@@ -29,15 +29,25 @@ module NyxPost
     end
 
     def create(title, desc)
-      Post.new(title, desc)
+      post = Post.new(title, desc)
+      if post.save
+        "Added #{post}"
+      else
+        "Unable to create post #{title}"
+      end
     end
 
     def destroy(id)
-      post = find(id)
-      if post
-        Post.destroy(post)
-      else
-        puts "Post #{id} no found"
+      begin
+        post = Post.find(id)
+        if post
+          post.destroy
+          "Post #{id} deleted"
+        else
+          "Post #{id} no found"
+        end
+      rescue => e
+        "Error delete: #{e}"
       end
     end
 

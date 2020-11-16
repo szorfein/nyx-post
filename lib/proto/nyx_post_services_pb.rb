@@ -16,7 +16,7 @@ module Nyx
 
       rpc :GetPost, ::Nyx::GetPostRequest, ::Nyx::GetPostReply
       rpc :GetPosts, ::Nyx::GetPostsRequest, ::Nyx::GetPostsReply
-      rpc :Create, ::Nyx::CreateRequest, ::Nyx::CreateReply
+      rpc :CreatePost, ::Nyx::CreateRequest, ::Nyx::CreateReply
       rpc :Delete, ::Nyx::DeleteRequest, ::Nyx::DeleteReply
       rpc :Update, ::Nyx::UpdateRequest, ::Nyx::UpdateReply
     end

@@ -1,4 +1,3 @@
-require 'grpc'
 require 'proto/nyx_post_services_pb'
 
 module NyxPost
@@ -12,7 +11,7 @@ module NyxPost
 
       def start
         begin
-          @stub.create(Nyx::CreateRequest.new(title: @title, description: @desc)).message
+          @stub.create_post(Nyx::CreateRequest.new(title: @title, description: @desc)).message
         rescue GRPC::BadStatus => e
           abort "ERROR: #{e.message}"
         end

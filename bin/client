@@ -17,6 +17,6 @@ reply = NyxPost::Client::CreatePost.new("GPG Keys", "Howto create a GPG Key with
 puts reply
 
 # Delete
-#puts "==> Delete one"
-#res = NyxPost::Client::DeletePost.new("1").start
-#puts res
+puts "==> Delete one"
+res = NyxPost::Client::DeletePost.new("1").start
+puts res

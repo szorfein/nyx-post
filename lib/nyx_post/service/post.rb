@@ -16,20 +16,13 @@ module NyxPost
         Nyx::GetPostsReply.new(posts: my_posts)
       end
 
-      def create(post_req, _unused_call)
-        title = post_req.title
-        desc = post_req.description
-        post = NyxPost::DB.new.create(title, desc)
-        if post.save
-          msg = "Create title #{post_req.title} and desc #{post_req.description}"
-        else
-          msg = "Fail to create post"
-        end
+      def create_post(post_req, _unused_call)
+        msg = NyxPost::DB.new.create(post_req.title, post_req.description)
         Nyx::CreateReply.new(message: msg)
       end
 
       def delete(post_req, _unused_call)
-        msg = "Post #{post_req.id} deleted"
+        msg = NyxPost::DB.new.destroy(post_req.id)
         Nyx::DeleteReply.new(message: msg)
       end
     end

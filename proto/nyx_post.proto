@@ -5,7 +5,7 @@ package nyx;
 service PostService {
   rpc GetPost(GetPostRequest) returns (GetPostReply) {}
   rpc GetPosts(GetPostsRequest) returns (GetPostsReply) {}
-  rpc Create(CreateRequest) returns (CreateReply) {}
+  rpc CreatePost(CreateRequest) returns (CreateReply) {}
   rpc Delete(DeleteRequest) returns (DeleteReply) {}
   rpc Update(UpdateRequest) returns (UpdateReply) {}
 }
