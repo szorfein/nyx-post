@@ -2,21 +2,24 @@
 
 require 'nyx_post'
 
-# Get
-#puts "==> By id"
-#post = NyxPost::Client::GetPost.new.by_id("1")
-#puts "#{post.id} | #{post.title} | #{post.description}"
-
-#puts "==> Get all"
-#posts = NyxPost::Client::GetPost.new.all(0, 0)
-#posts.each { |p| puts "#{p.id} | #{p.title} | #{p.description}" }
-
 # Create
 puts "==> Create one"
 reply = NyxPost::Client::CreatePost.new("GPG Keys", "Howto create a GPG Key with Tails Linux").start
 puts reply
 
+puts "==> Get all"
+posts = NyxPost::Client::GetPost.new.all(0, 0)
+posts.each { |p| puts "#{p.id} | #{p.title} | #{p.description}" }
+
+# save an id
+id = posts[0].id
+
+# Get
+puts "==> By id: #{id}"
+post = NyxPost::Client::GetPost.new.by_id(id)
+puts "#{post.id} | #{post.title} | #{post.description}"
+
 # Delete
-puts "==> Delete one"
-res = NyxPost::Client::DeletePost.new("1").start
+puts "==> Delete post #{id}"
+res = NyxPost::Client::DeletePost.new(id).start
 puts res

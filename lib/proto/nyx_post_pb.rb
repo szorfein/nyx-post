@@ -9,6 +9,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
       optional :id, :string, 1
       optional :title, :string, 2
       optional :description, :string, 3
+      optional :created_at, :string, 4
     end
     add_message "nyx.GetPostRequest" do
       optional :id, :string, 1

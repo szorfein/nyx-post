@@ -1,14 +1,18 @@
 require 'pg'
 require 'active_record'
+require 'securerandom'
+require 'logger'
 
 module NyxPost
   class DB
     def initialize
       @conn = ENV['DATABASE_URL'] ||= config
+      @log = Logger.new(STDOUT)
     end
 
     def init
       ActiveRecord::Base.establish_connection(@conn)
+      ActiveRecord::Base.logger = Logger.new(STDOUT)
       add_schema
     end
 
@@ -25,15 +29,23 @@ module NyxPost
     end
 
     def get_all
-      Post.all ||= []
+      posts = Post.all ||= [{ id: nil, title: nil, description: nil, created_at: nil }]
+      my_posts = []
+      posts.each { |p| my_posts << { id: p.id, title: p.title, description: p.description, created_at: "#{p.created_at}" }}
+      @log.info(my_posts)
+      my_posts
     end
 
     def create(title, desc)
-      post = Post.new(title, desc)
-      if post.save
-        "Added #{post}"
-      else
-        "Unable to create post #{title}"
+      begin
+        post = Post.new(title: title, description: desc, created_at: Time.now)
+        if post.save
+          "Added #{post.id}"
+        else
+          "Unable to create post #{title}"
+        end
+      rescue => e
+        "Error: #{e}"
       end
     end
 
@@ -58,8 +70,9 @@ module NyxPost
         self.verbose = true # or false
 
         enable_extension "plpgsql"
+        enable_extension "pgcrypto"
 
-        create_table "posts", force: :cascade do |t|
+        create_table "posts", id: :uuid, force: :cascade do |t|
           t.string "title", null: false
           t.string "description", null: false
           t.datetime "created_at", precision: 6, null: false
