@@ -3,5 +3,4 @@ module NyxPost
   end
 end
 
-require_relative 'service/demo'
-require_relative 'service/rails'
+require_relative 'service/post'
