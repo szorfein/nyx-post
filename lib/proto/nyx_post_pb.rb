@@ -34,7 +34,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
       optional :id, :string, 1
     end
     add_message "nyx.DeleteReply" do
-      optional :msg_err, :string, 1
+      optional :message, :string, 1
     end
     add_message "nyx.UpdateRequest" do
     end

@@ -30,7 +30,7 @@ module NyxPost
 
       def delete(post_req, _unused_call)
         msg = "Post #{post_req.id} deleted"
-        Nyx::DeleteReply.new(msg_err: msg)
+        Nyx::DeleteReply.new(message: msg)
       end
     end
   end
