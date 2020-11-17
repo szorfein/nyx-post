@@ -4,8 +4,8 @@ require 'nyx_post'
 
 # Create
 puts "==> Create one"
-reply = NyxPost::Client::CreatePost.new("GPG Keys", "Howto create a GPG Key with Tails Linux").start
-puts reply
+post = NyxPost::Client::CreatePost.new("GPG Keys", "Howto create a GPG Key with Tails Linux").start
+puts "#{post.id} | #{post.title} | #{post.description}"
 
 puts "==> Get all"
 posts = NyxPost::Client::GetPost.new.all(0, 0)

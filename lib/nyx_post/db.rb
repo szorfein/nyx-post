@@ -41,7 +41,7 @@ module NyxPost
       begin
         post = Post.new(title: title, description: desc, created_at: Time.now)
         if post.save
-          "Added #{post.id}"
+          { id: post.id, title: title, description: desc, created_at: "#{Time.now}" }
         else
           "Unable to create post #{title}"
         end

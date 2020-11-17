@@ -29,7 +29,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
       optional :description, :string, 2
     end
     add_message "nyx.CreateReply" do
-      optional :message, :string, 1
+      optional :post, :message, 1, "nyx.Post"
     end
     add_message "nyx.DeleteRequest" do
       optional :id, :string, 1

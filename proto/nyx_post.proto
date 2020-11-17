@@ -40,7 +40,7 @@ message CreateRequest {
 }
 
 message CreateReply {
-  string message = 1;
+  Post post = 1;
 }
 
 message DeleteRequest {

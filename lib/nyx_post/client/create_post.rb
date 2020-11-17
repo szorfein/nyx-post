@@ -11,7 +11,7 @@ module NyxPost
 
       def start
         begin
-          @stub.create_post(Nyx::CreateRequest.new(title: @title, description: @desc)).message
+          @stub.create_post(Nyx::CreateRequest.new(title: @title, description: @desc)).post
         rescue GRPC::BadStatus => e
           abort "ERROR: #{e.message}"
         end

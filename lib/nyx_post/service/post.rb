@@ -17,8 +17,8 @@ module NyxPost
       end
 
       def create_post(post_req, _unused_call)
-        msg = NyxPost::DB.new.create(post_req.title, post_req.description)
-        Nyx::CreateReply.new(message: msg)
+        post = NyxPost::DB.new.create(post_req.title, post_req.description)
+        Nyx::CreateReply.new(post: post)
       end
 
       def delete(post_req, _unused_call)
