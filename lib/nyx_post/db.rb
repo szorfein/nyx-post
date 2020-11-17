@@ -32,7 +32,7 @@ module NyxPost
     def get_all
       posts = Post.all ||= [{ id: nil, title: nil, description: nil, created_at: nil }]
       my_posts = []
-      posts.each { |p| my_posts << { id: p.id, title: p.title, description: p.description, created_at: "#{p.created_at}" }}
+      posts.each { |p| my_posts << { id: p.id, title: p.title, description: p.description, created_at: p.created_at }}
       @log.info(my_posts)
       my_posts
     end
@@ -41,7 +41,8 @@ module NyxPost
       begin
         post = Post.new(title: title, description: desc, created_at: Time.now)
         if post.save
-          { id: post.id, title: title, description: desc, created_at: "#{Time.now}" }
+          @log.info("Create return: #{post.to_s}")
+          { id: post.id, title: post.title, description: post.description, created_at: post.created_at }
         else
           "Unable to create post #{title}"
         end

@@ -3,13 +3,14 @@
 
 require 'google/protobuf'
 
+require 'google/protobuf/timestamp_pb'
 Google::Protobuf::DescriptorPool.generated_pool.build do
   add_file("nyx_post.proto", :syntax => :proto3) do
     add_message "nyx.Post" do
       optional :id, :string, 1
       optional :title, :string, 2
       optional :description, :string, 3
-      optional :created_at, :string, 4
+      optional :created_at, :message, 4, "google.protobuf.Timestamp"
     end
     add_message "nyx.GetPostRequest" do
       optional :id, :string, 1

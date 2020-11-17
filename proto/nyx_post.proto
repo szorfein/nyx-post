@@ -1,5 +1,7 @@
 syntax = "proto3";
 
+import "google/protobuf/timestamp.proto";
+
 package nyx;
 
 service PostService {
@@ -14,7 +16,7 @@ message Post {
   string id = 1;
   string title = 2;
   string description = 3;
-  string created_at = 4;
+  google.protobuf.Timestamp created_at = 4;
 }
 
 message GetPostRequest {
