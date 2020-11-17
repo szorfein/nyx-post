@@ -22,6 +22,7 @@ module NyxPost
     end
 
     class Post < ApplicationRecord
+      validates :title, uniqueness: true
     end
 
     def get_id(id)
